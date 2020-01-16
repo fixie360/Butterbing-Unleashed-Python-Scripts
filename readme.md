@@ -20,8 +20,9 @@ To setup new build environment:
   - Generate serverless packages with command $ serverless package
 
 To Deploy Updates:
+  - Config files and key pairs stored in S3 Bucket
   - Launch Build instance from AMI into Default VPC
   - SSH to new EC2 Instance
   - Navigate to local repo and 'git pull'
-  - Copy config.py with keys to repo.
-  - Confirm updates then deploy using 'sls deploy'
+  - Copy config.py and client_secret.json
+  - Deploy using 'sls deploy'
