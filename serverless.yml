@@ -1,0 +1,39 @@
+service: unleashed-customers-serverless
+
+provider:
+  name: aws
+  runtime: python3.6
+  stage: prod
+  region: ap-southeast-2
+  stackName: butterbing-unleashed-stack
+  deploymentBucket:
+      name: serverless.butterbing.unleashed.deploys
+
+functions:
+  unleashed_customers:
+    handler: unleashed_customers.lambda_handler
+    name: Butterbing-Unleashed-Customers
+    description: Contacts Unleashed Software's API and updates Butterbing's master customer list in Google Sheets.
+    timeout: 180
+    events:
+      - schedule:
+          name: Customers-Update-Schedule
+          description: 'Update Butterbing customer spreadsheet at 8am and 2pm Mon-Fri every day.'
+          rate: cron(0 21,3 ? * SUN-SAT *)
+  unleashed_sales:
+    handler: unleashed_sales.lambda_handler
+    name: Butterbing-Unleashed-Sales
+    description: Contacts Unleashed Software's API and updates Butterbing's master invoices list in Google Sheets.
+    timeout: 180
+    events:
+      - schedule:
+          name: Invoice-Update-Schedule
+          description: 'Update Butterbing invoices spreadsheet at 8am and 2pm every day.'
+          rate: cron(0 21,3 ? * SUN-SAT *)
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true

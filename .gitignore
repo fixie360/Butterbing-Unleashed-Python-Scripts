@@ -1,0 +1,11 @@
+# Serverless directories
+.serverless
+
+#local
+__pycache__
+node_modules
+client_secret.json
+config.py
+package-lock.json
+package.json
+unleashed_sales_dev.py
