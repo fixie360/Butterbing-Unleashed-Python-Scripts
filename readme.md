@@ -23,6 +23,7 @@ To Deploy Updates:
   - Config files and key pairs stored in S3 Bucket
   - Launch Build instance from AMI into Default VPC
   - SSH to new EC2 Instance
-  - Navigate to local repo and 'git pull'
-  - Copy config.py and client_secret.json
+  - Pull updates from Git (git pull)
+  - Copy config.py and client_secret.json (scp -i BBUnleashedBuild.pem client_secret.json config.py ec2-user@ec2-52-64-181-64.ap-southeast-2.compute.amazonaws.com:/home/ec2-user/Butterbing-Unleashed-Python-Scripts/) Note: Update instance info with current.
   - Deploy using 'sls deploy'
+  - Test deployment using 'sls invoke --function unleashed_customers' and 'sls invoke --function unleashed_sales' and confirm spreadsheets have updated.
