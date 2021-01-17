@@ -18,7 +18,7 @@ functions:
     events:
       - schedule:
           name: Customers-Update-Schedule
-          description: 'Update Butterbing customer spreadsheet at 8am and 2pm Mon-Fri every day.'
+          description: 'Update Butterbing customer spreadsheet at 8am and 2pm every day.'
           rate: cron(0 21,3 ? * SUN-SAT *)
   unleashed_sales:
     handler: unleashed_sales.lambda_handler
